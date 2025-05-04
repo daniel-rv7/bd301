@@ -1,11 +1,13 @@
 package bd301;
 
-import java.sql.Connection;
+import javax.swing.SwingUtilities;
 
 public class Bd301 {
     public static void main(String[] args) {
-        Conectar con = new Conectar();
-        Connection conn = con.getConnection();
-
-    }       
+        SwingUtilities.invokeLater(() -> {
+            BienvenidaFrame bienvenida = new BienvenidaFrame();
+            bienvenida.setVisible(true);
+        });
+    }
 }
+
