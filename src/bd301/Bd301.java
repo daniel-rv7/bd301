@@ -7,6 +7,7 @@ public class Bd301 {
         SwingUtilities.invokeLater(() -> {
             BienvenidaFrame bienvenida = new BienvenidaFrame();
             bienvenida.setVisible(true);
+            
         });
     }
 }
