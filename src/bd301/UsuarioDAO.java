@@ -23,6 +23,34 @@ public class UsuarioDAO {
             stmt.executeUpdate();
         }
     }
+    
+    public Usuario verificarLogin(String correo, String identificacion) {
+    String sql = "SELECT * FROM usuarios WHERE correo = ? AND identificacion = ?";
+    try (Connection con = Conectar.getConnection();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+
+        ps.setString(1, correo);
+        ps.setString(2, identificacion);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            Usuario usuario = new Usuario();
+            usuario.setId(rs.getInt("id"));
+            usuario.setNombre(rs.getString("nombre"));
+            usuario.setApellido(rs.getString("apellido"));
+            usuario.setCorreo(rs.getString("correo"));
+            usuario.setIdentificacion(rs.getString("identificacion"));
+            usuario.setNumero(rs.getString("numero"));
+            usuario.setIdRol(rs.getInt("id_rol"));
+            usuario.setEstado(rs.getString("estado"));
+            return usuario;
+        }
+    } catch (SQLException e) {
+        System.out.println("Error al verificar login: " + e.getMessage());
+    }
+    return null;
+}
+
 
     public List<Usuario> listar() throws SQLException {
         List<Usuario> lista = new ArrayList<>();
