@@ -4,17 +4,19 @@
  */
 package bd301;
 
-/**
- *
- * @author danie
- */
-public class InventarioFrame extends javax.swing.JFrame {
+import java.sql.Connection;
 
-    /**
-     * Creates new form InventarioFrame
-     */
+public class InventarioFrame extends javax.swing.JFrame {
+    private Connection conn;
+    private InventarioDAO inventarioDAO;
+
     public InventarioFrame() {
         initComponents();
+        this.conn = conn;
+        this.inventarioDAO = new InventarioDAO(conn);
+        cargarInventarioEnTabla();
+}
+
     }
 
     /**
@@ -26,17 +28,59 @@ public class InventarioFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblTitulo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TablaInventario = new javax.swing.JTable();
+        btnCerrar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblTitulo.setText("Inventario de productos ");
+
+        TablaInventario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(TablaInventario);
+
+        btnCerrar.setText("Cerrar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(270, 270, 270)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(97, 97, 97)
+                        .addComponent(btnCerrar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(422, 422, 422)
+                        .addComponent(lblTitulo)))
+                .addContainerGap(309, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(lblTitulo)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(263, 263, 263)
+                        .addComponent(btnCerrar)))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         pack();
@@ -78,5 +122,9 @@ public class InventarioFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TablaInventario;
+    private javax.swing.JButton btnCerrar;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
 }
