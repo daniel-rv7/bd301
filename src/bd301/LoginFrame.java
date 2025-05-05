@@ -41,10 +41,20 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel1.setText("Correo");
 
         txtCorreo.setText("jTextField1");
+        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCorreoActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Contraseña");
 
         txtContrasena.setText("jPasswordField1");
+        txtContrasena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContrasenaActionPerformed(evt);
+            }
+        });
 
         chkMostrarContrasena.setText("jCheckBox1");
         chkMostrarContrasena.addActionListener(new java.awt.event.ActionListener() {
@@ -152,6 +162,14 @@ public class LoginFrame extends javax.swing.JFrame {
         new BienvenidaFrame().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void txtContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContrasenaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContrasenaActionPerformed
+
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreoActionPerformed
 
     /**
      * @param args the command line arguments
