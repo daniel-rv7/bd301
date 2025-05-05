@@ -43,11 +43,6 @@ public class BienvenidaFrame extends javax.swing.JFrame {
         });
 
         btnRegistrarse.setText("Registrarse");
-        btnRegistrarse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarseActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("jLabel2");
 
@@ -96,12 +91,6 @@ public class BienvenidaFrame extends javax.swing.JFrame {
         login.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
-
-    private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-        RegistroFrame registro = new RegistroFrame();
-        registro.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     /**
      * @param args the command line arguments

@@ -1,75 +1,90 @@
 package bd301;
 
-import java.sql.*;
-import java.util.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioDAO {
-    private Connection conn;
 
-    public UsuarioDAO(Connection conn) {
-        this.conn = conn;
-    }
+    // Registrar nuevo usuario
+    public boolean registrarUsuario(Usuario usuario) {
+        String sql = "INSERT INTO usuarios (nombre, apellido, numero, correo, identificacion, contrasena, id_rol, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-    public void insertar(Usuario u) throws SQLException {
-        String sql = "INSERT INTO usuarios (nombre, apellido, numero, correo, identificacion, id_rol, estado) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, u.getNombre());
-            stmt.setString(2, u.getApellido());
-            stmt.setString(3, u.getNumero());
-            stmt.setString(4, u.getCorreo());
-            stmt.setString(5, u.getIdentificacion());
-            stmt.setInt(6, u.getIdRol());
-            stmt.setString(7, u.getEstado());
+        try (Connection conn = Conectar.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, usuario.getNombre());
+            stmt.setString(2, usuario.getApellido());
+            stmt.setString(3, usuario.getNumero());
+            stmt.setString(4, usuario.getCorreo());
+            stmt.setString(5, usuario.getIdentificacion());
+            stmt.setString(6, usuario.getContrasena()); // Nueva línea
+            stmt.setInt(7, usuario.getIdRol());
+            stmt.setString(8, usuario.getEstado());
+
             stmt.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error registrando usuario: " + e.getMessage());
+            return false;
         }
     }
-    
-    public Usuario verificarLogin(String correo, String identificacion) {
-    String sql = "SELECT * FROM usuarios WHERE correo = ? AND identificacion = ?";
-    try (Connection con = Conectar.getConnection();
-         PreparedStatement ps = con.prepareStatement(sql)) {
 
-        ps.setString(1, correo);
-        ps.setString(2, identificacion);
-        ResultSet rs = ps.executeQuery();
+    // Iniciar sesión (login)
+    public Usuario iniciarSesion(String correo, String contrasena) {
+        String sql = "SELECT * FROM usuarios WHERE correo = ? AND contrasena = ? AND estado = 'activo'";
 
-        if (rs.next()) {
-            Usuario usuario = new Usuario();
-            usuario.setId(rs.getInt("id"));
-            usuario.setNombre(rs.getString("nombre"));
-            usuario.setApellido(rs.getString("apellido"));
-            usuario.setCorreo(rs.getString("correo"));
-            usuario.setIdentificacion(rs.getString("identificacion"));
-            usuario.setNumero(rs.getString("numero"));
-            usuario.setIdRol(rs.getInt("id_rol"));
-            usuario.setEstado(rs.getString("estado"));
-            return usuario;
+        try (Connection conn = Conectar.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, correo);
+            stmt.setString(2, contrasena);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Usuario usuario = new Usuario();
+                usuario.setId(rs.getInt("id"));
+                usuario.setNombre(rs.getString("nombre"));
+                usuario.setApellido(rs.getString("apellido"));
+                usuario.setNumero(rs.getString("numero"));
+                usuario.setCorreo(rs.getString("correo"));
+                usuario.setIdentificacion(rs.getString("identificacion"));
+                usuario.setContrasena(rs.getString("contrasena")); // Seteamos contraseña si es necesario
+                usuario.setIdRol(rs.getInt("id_rol"));
+                usuario.setEstado(rs.getString("estado"));
+                return usuario;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error iniciando sesión: " + e.getMessage());
         }
-    } catch (SQLException e) {
-        System.out.println("Error al verificar login: " + e.getMessage());
+
+        return null; // No encontrado
     }
-    return null;
-}
 
-
-    public List<Usuario> listar() throws SQLException {
+    // Obtener todos los usuarios
+    public List<Usuario> listarUsuarios() {
         List<Usuario> lista = new ArrayList<>();
         String sql = "SELECT * FROM usuarios";
-        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+
+        try (Connection conn = Conectar.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                Usuario u = new Usuario(
-                    rs.getInt("id"),
-                    rs.getString("nombre"),
-                    rs.getString("apellido"),
-                    rs.getString("numero"),
-                    rs.getString("correo"),
-                    rs.getString("identificacion"),
-                    rs.getInt("id_rol"),
-                    rs.getString("estado")
-                );
-                lista.add(u);
+                Usuario usuario = new Usuario();
+                usuario.setId(rs.getInt("id"));
+                usuario.setNombre(rs.getString("nombre"));
+                usuario.setApellido(rs.getString("apellido"));
+                usuario.setNumero(rs.getString("numero"));
+                usuario.setCorreo(rs.getString("correo"));
+                usuario.setIdentificacion(rs.getString("identificacion"));
+                usuario.setContrasena(rs.getString("contrasena"));
+                usuario.setIdRol(rs.getInt("id_rol"));
+                usuario.setEstado(rs.getString("estado"));
+                lista.add(usuario);
             }
+        } catch (Exception e) {
+            System.out.println("Error listando usuarios: " + e.getMessage());
         }
+
         return lista;
     }
 }
+ 
