@@ -160,7 +160,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         new BienvenidaFrame().setVisible(true);
-        this.dispose();
+        this.dispose(); 
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void txtContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContrasenaActionPerformed
