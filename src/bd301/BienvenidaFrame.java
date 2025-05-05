@@ -66,6 +66,11 @@ public class BienvenidaFrame extends javax.swing.JFrame {
                 btnRegistrarseMouseExited(evt);
             }
         });
+        btnRegistrarse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -158,6 +163,12 @@ public class BienvenidaFrame extends javax.swing.JFrame {
     private void btnRegistrarseMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarseMouseExited
         btnRegistrarse.setBackground(Color.LIGHT_GRAY);
     }//GEN-LAST:event_btnRegistrarseMouseExited
+
+    private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
+       RegistroFrame registro = new RegistroFrame();
+        registro.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     /**
      * @param args the command line arguments
