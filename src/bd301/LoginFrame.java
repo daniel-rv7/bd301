@@ -239,7 +239,7 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverMouseEntered
 
     private void btnVolverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseExited
-        btnIngresar.setBackground(Color.LIGHT_GRAY);
+        btnVolver.setBackground(Color.LIGHT_GRAY);
     }//GEN-LAST:event_btnVolverMouseExited
 
     /**

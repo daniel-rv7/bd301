@@ -152,7 +152,6 @@ public class BienvenidaFrame extends javax.swing.JFrame {
         LoginFrame login = new LoginFrame();
         login.setVisible(true);
         this.dispose();
-        
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnIniciarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIniciarSesionMouseExited

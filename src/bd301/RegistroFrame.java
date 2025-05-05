@@ -88,7 +88,7 @@ public class RegistroFrame extends javax.swing.JFrame {
             }
         });
 
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setText("Volver");
         btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnCancelarMouseEntered(evt);
@@ -233,7 +233,8 @@ public class RegistroFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_chkVerContrasenaActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.dispose(); // Cierra la ventana
+        new BienvenidaFrame().setVisible(true);
+        this.dispose(); 
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void txtContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContrasenaActionPerformed
