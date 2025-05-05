@@ -9,12 +9,20 @@ package bd301;
  * @author danie
  */
 public class MenuPrincipalFrame extends javax.swing.JFrame {
-
-    /**
-     * Creates new form MenuPrincipalFrame
-     */
-    public MenuPrincipalFrame() {
+    private Usuario usuario;
+    
+    public MenuPrincipalFrame(Usuario usuario) {
         initComponents();
+        this.usuario = usuario;
+        lblBienvenida.setText("Bienvenido/a, " + usuario.getNombre());
+
+    // Mostrar solo si es admin
+        if (usuario.getIdRol() == 1) { // Suponiendo 1 = usuario básico
+            btnInventario.setVisible(false);
+            btnAsignarHorario.setVisible(false);
+        } else if (usuario.getIdRol() == 2) {
+            btnAsignarHorario.setVisible(false);
+        }
     }
 
     /**
@@ -26,21 +34,118 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblBienvenida = new javax.swing.JLabel();
+        btnRegistrarBici = new javax.swing.JButton();
+        btnReservarServicio = new javax.swing.JButton();
+        btnHistorialCompras = new javax.swing.JButton();
+        btnInventario = new javax.swing.JButton();
+        btnAsignarHorario = new javax.swing.JButton();
+        btnCerrarSesion = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblBienvenida.setText("Bienvenido/a:");
+
+        btnRegistrarBici.setText("Registrar Bicicleta");
+        btnRegistrarBici.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarBiciActionPerformed(evt);
+            }
+        });
+
+        btnReservarServicio.setText("Reservar Servicio");
+        btnReservarServicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReservarServicioActionPerformed(evt);
+            }
+        });
+
+        btnHistorialCompras.setText("Ver historial de compras");
+
+        btnInventario.setText("Administrar Inventario");
+        btnInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInventarioActionPerformed(evt);
+            }
+        });
+
+        btnAsignarHorario.setText("Asignar Horarios");
+
+        btnCerrarSesion.setText("Cerrar Sesion");
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSesionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(426, 426, 426)
+                .addComponent(lblBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(658, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnInventario)
+                            .addComponent(btnHistorialCompras)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnRegistrarBici)
+                                    .addComponent(btnReservarServicio))))
+                        .addGap(378, 378, 378))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnAsignarHorario)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnCerrarSesion)
+                                .addGap(9, 9, 9)))
+                        .addGap(403, 403, 403))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(lblBienvenida)
+                .addGap(69, 69, 69)
+                .addComponent(btnRegistrarBici)
+                .addGap(18, 18, 18)
+                .addComponent(btnReservarServicio)
+                .addGap(18, 18, 18)
+                .addComponent(btnHistorialCompras)
+                .addGap(18, 18, 18)
+                .addComponent(btnInventario)
+                .addGap(18, 18, 18)
+                .addComponent(btnAsignarHorario)
+                .addGap(18, 18, 18)
+                .addComponent(btnCerrarSesion)
+                .addContainerGap(252, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegistrarBiciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarBiciActionPerformed
+        new RegistrarBicicletaFrame(usuario).setVisible(true);
+    }//GEN-LAST:event_btnRegistrarBiciActionPerformed
+
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        new LoginFrame().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
+
+    private void btnReservarServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservarServicioActionPerformed
+        new ReservarServicioFrame(usuario).setVisible(true);
+    }//GEN-LAST:event_btnReservarServicioActionPerformed
+
+    private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
+        new InventarioFrame(usuario).setvisible(true);
+    }//GEN-LAST:event_btnInventarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +183,12 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAsignarHorario;
+    private javax.swing.JButton btnCerrarSesion;
+    private javax.swing.JButton btnHistorialCompras;
+    private javax.swing.JButton btnInventario;
+    private javax.swing.JButton btnRegistrarBici;
+    private javax.swing.JButton btnReservarServicio;
+    private javax.swing.JLabel lblBienvenida;
     // End of variables declaration//GEN-END:variables
 }

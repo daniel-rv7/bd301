@@ -150,7 +150,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
         if (usuario != null) {
             JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso. Bienvenido, " + usuario.getNombre());
-            new MenuPrincipalFrame(usuario.getRol().getId()).setVisible(true); // según tu diseño
+            new MenuPrincipalFrame(usuario).setVisible(true);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectos.");
