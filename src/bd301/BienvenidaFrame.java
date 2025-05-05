@@ -4,6 +4,8 @@
  */
 package bd301;
 
+import java.awt.Color;
+
 /**
  *
  * @author danie
@@ -41,6 +43,14 @@ public class BienvenidaFrame extends javax.swing.JFrame {
         jLabel2.setText("jLabel2");
 
         btnIniciarSesion.setText("Iniciar Sesión");
+        btnIniciarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnIniciarSesionMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnIniciarSesionMouseExited(evt);
+            }
+        });
         btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarSesionActionPerformed(evt);
@@ -48,6 +58,14 @@ public class BienvenidaFrame extends javax.swing.JFrame {
         });
 
         btnRegistrarse.setText("Registrarse");
+        btnRegistrarse.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnRegistrarseMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnRegistrarseMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -122,7 +140,24 @@ public class BienvenidaFrame extends javax.swing.JFrame {
         LoginFrame login = new LoginFrame();
         login.setVisible(true);
         this.dispose();
+        
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
+
+    private void btnIniciarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIniciarSesionMouseExited
+        btnIniciarSesion.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_btnIniciarSesionMouseExited
+
+    private void btnIniciarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIniciarSesionMouseEntered
+        btnIniciarSesion.setBackground(Color.DARK_GRAY);
+    }//GEN-LAST:event_btnIniciarSesionMouseEntered
+
+    private void btnRegistrarseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarseMouseEntered
+        btnRegistrarse.setBackground(Color.DARK_GRAY);
+    }//GEN-LAST:event_btnRegistrarseMouseEntered
+
+    private void btnRegistrarseMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarseMouseExited
+        btnRegistrarse.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_btnRegistrarseMouseExited
 
     /**
      * @param args the command line arguments

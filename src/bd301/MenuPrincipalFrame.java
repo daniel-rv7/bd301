@@ -4,6 +4,8 @@
  */
 package bd301;
 
+import java.awt.Color;
+
 /**
  *
  * @author danie
@@ -48,6 +50,14 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         lblBienvenida.setText("Bienvenido/a:");
 
         btnReservarServicio.setText("Reservar Servicio");
+        btnReservarServicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnReservarServicioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnReservarServicioMouseExited(evt);
+            }
+        });
         btnReservarServicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReservarServicioActionPerformed(evt);
@@ -55,8 +65,24 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         });
 
         btnHistorialCompras.setText("Ver historial de compras");
+        btnHistorialCompras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnHistorialComprasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnHistorialComprasMouseExited(evt);
+            }
+        });
 
         btnInventario.setText("Administrar Inventario");
+        btnInventario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnInventarioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnInventarioMouseExited(evt);
+            }
+        });
         btnInventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInventarioActionPerformed(evt);
@@ -64,8 +90,27 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         });
 
         btnAsignarHorario.setText("Asignar Horarios");
+        btnAsignarHorario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAsignarHorarioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAsignarHorarioMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAsignarHorarioMousePressed(evt);
+            }
+        });
 
         btnCerrarSesion.setText("Cerrar Sesion");
+        btnCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCerrarSesionMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCerrarSesionMouseExited(evt);
+            }
+        });
         btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarSesionActionPerformed(evt);
@@ -73,6 +118,14 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         });
 
         btnRegistrarBici.setText("Registrar Bicicleta");
+        btnRegistrarBici.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnRegistrarBiciMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnRegistrarBiciMouseExited(evt);
+            }
+        });
         btnRegistrarBici.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarBiciActionPerformed(evt);
@@ -159,6 +212,58 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
     private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
         new InventarioFrame(usuario).setvisible(true);
     }//GEN-LAST:event_btnInventarioActionPerformed
+
+    private void btnRegistrarBiciMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarBiciMouseEntered
+        btnRegistrarBici.setBackground(Color.DARK_GRAY);
+    }//GEN-LAST:event_btnRegistrarBiciMouseEntered
+
+    private void btnRegistrarBiciMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarBiciMouseExited
+        btnRegistrarBici.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_btnRegistrarBiciMouseExited
+
+    private void btnReservarServicioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReservarServicioMouseEntered
+        btnReservarServicio.setBackground(Color.DARK_GRAY);
+    }//GEN-LAST:event_btnReservarServicioMouseEntered
+
+    private void btnReservarServicioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReservarServicioMouseExited
+        btnReservarServicio.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_btnReservarServicioMouseExited
+
+    private void btnHistorialComprasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistorialComprasMouseEntered
+        btnHistorialCompras.setBackground(Color.DARK_GRAY);
+    }//GEN-LAST:event_btnHistorialComprasMouseEntered
+
+    private void btnHistorialComprasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistorialComprasMouseExited
+        btnHistorialCompras.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_btnHistorialComprasMouseExited
+
+    private void btnInventarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInventarioMouseEntered
+        btnInventario.setBackground(Color.DARK_GRAY);
+    }//GEN-LAST:event_btnInventarioMouseEntered
+
+    private void btnInventarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInventarioMouseExited
+        btnInventario.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_btnInventarioMouseExited
+
+    private void btnAsignarHorarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignarHorarioMouseEntered
+        btnAsignarHorario.setBackground(Color.DARK_GRAY);
+    }//GEN-LAST:event_btnAsignarHorarioMouseEntered
+
+    private void btnAsignarHorarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignarHorarioMousePressed
+        
+    }//GEN-LAST:event_btnAsignarHorarioMousePressed
+
+    private void btnAsignarHorarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignarHorarioMouseExited
+        btnAsignarHorario.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_btnAsignarHorarioMouseExited
+
+    private void btnCerrarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarSesionMouseEntered
+        btnCerrarSesion.setBackground(Color.DARK_GRAY);
+    }//GEN-LAST:event_btnCerrarSesionMouseEntered
+
+    private void btnCerrarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarSesionMouseExited
+        btnCerrarSesion.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_btnCerrarSesionMouseExited
 
     /**
      * @param args the command line arguments
