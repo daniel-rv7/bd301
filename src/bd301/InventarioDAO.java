@@ -20,6 +20,19 @@ public class InventarioDAO {
             stmt.executeUpdate();
         }
     }
+    
+    public void actualizar(Inventario i) throws SQLException {
+        String sql = "UPDATE inventario SET nombre=?, descripcion=?, precio=?, cantidad=? WHERE id=?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, i.getNombre());
+            stmt.setString(2, i.getDescripcion());
+            stmt.setDouble(3, i.getPrecio());
+            stmt.setInt(4, i.getCantidad());
+            stmt.setInt(5, i.getId());
+            stmt.executeUpdate();
+    }
+    }
+
 
     public List<Inventario> listar() throws SQLException {
         List<Inventario> lista = new ArrayList<>();
