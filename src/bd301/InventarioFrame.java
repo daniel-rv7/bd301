@@ -5,19 +5,43 @@
 package bd301;
 
 import java.sql.Connection;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
+/**
+ *
+ * @author danie
+ */
 public class InventarioFrame extends javax.swing.JFrame {
     private Connection conn;
     private InventarioDAO inventarioDAO;
+    private javax.swing.JTable tablainventario;
 
+    /**
+     * Creates new form InventarioFrame
+     */
     public InventarioFrame() {
         initComponents();
         this.conn = conn;
         this.inventarioDAO = new InventarioDAO(conn);
-        cargarInventarioEnTabla();
-}
-
+        cargarInventarioEnTabla(); // Debe existir este método
     }
+
+    private void cargarInventarioEnTabla() {
+        try {
+            List<Inventario> lista = inventarioDAO.listar();
+            DefaultTableModel model = (DefaultTableModel) tablaInventario.getModel();
+            model.setRowCount(0); // Limpiar tabla
+            for (Inventario i : lista) {
+                model.addRow(new Object[]{
+                    i.getId(), i.getNombre(), i.getDescripcion(), i.getPrecio(), i.getCantidad()
+                });
+            }
+        } catch (Exception e) {
+            System.out.println("Error cargando inventario: " + e.getMessage());
+          }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,29 +52,37 @@ public class InventarioFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblTitulo = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TablaInventario = new javax.swing.JTable();
-        btnCerrar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        ScrollTablaInventario = new javax.swing.JScrollPane();
+        tablaInventario = new javax.swing.JTable();
+        txtCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblTitulo.setText("Inventario de productos ");
+        jLabel1.setText("Inventario de Productos");
 
-        TablaInventario.setModel(new javax.swing.table.DefaultTableModel(
+        tablaInventario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Nombre", "Descripcion", "Precio", "Cantidad"
             }
-        ));
-        jScrollPane1.setViewportView(TablaInventario);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
-        btnCerrar.setText("Cerrar");
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        ScrollTablaInventario.setViewportView(tablaInventario);
+
+        txtCerrar.setText("Cerrar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -59,28 +91,28 @@ public class InventarioFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(270, 270, 270)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(97, 97, 97)
-                        .addComponent(btnCerrar))
+                        .addGap(516, 516, 516)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(422, 422, 422)
-                        .addComponent(lblTitulo)))
-                .addContainerGap(309, Short.MAX_VALUE))
+                        .addGap(374, 374, 374)
+                        .addComponent(ScrollTablaInventario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(txtCerrar)))
+                .addContainerGap(269, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jLabel1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(lblTitulo)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ScrollTablaInventario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(263, 263, 263)
-                        .addComponent(btnCerrar)))
-                .addContainerGap(100, Short.MAX_VALUE))
+                        .addGap(224, 224, 224)
+                        .addComponent(txtCerrar)))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         pack();
@@ -122,9 +154,10 @@ public class InventarioFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TablaInventario;
-    private javax.swing.JButton btnCerrar;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JScrollPane ScrollTablaInventario;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tablaInventario;
+    private javax.swing.JButton txtCerrar;
     // End of variables declaration//GEN-END:variables
 }
